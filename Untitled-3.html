@@ -1,0 +1,100 @@
+<!--还有很多检测没有加-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    </head>
+    <body>
+        <div>
+            <script>
+                //author: Tommy
+                //create arrays
+                let arrK = [];
+                let arrT = [];
+                function makeArr(arrK,arrT) {
+                    var valK = parseFloat(document.getElementById("valueK").value);
+                    var valT = parseFloat(document.getElementById("valueT").value);
+                    document.getElementById("valueK").value="";
+                    document.getElementById("valueT").value="";
+                    alert(typeof valK);
+                    if (arrT.indexOf(valT) != -1) {//如果有相同次数，K值合并
+                        arrK[arrT.indexOf(valT)]+=valK
+                    }else {
+                        arrT.push(valT);
+                        arrK.push(valK);
+                    }
+                    document.getElementById("displayValK").innerHTML="K: "+arrK;
+                    document.getElementById("displayValT").innerHTML="T: "+arrT;
+                }
+                //清空arr
+                function clearArr() {
+                    arrK=[];
+                    arrT=[];
+                    document.getElementById("displayValK").innerHTML="K: "+arrK;
+                    document.getElementById("displayValT").innerHTML="T: "+arrT;
+                }
+                //把arr中的数据载入
+                
+                function sumUp(ord, x) {//ord就填0,是初始序数
+                    if (ord<arrK.length) {
+                        return arrK[ord]*(x**arrT[ord]) + sumUp(ord+1, x)
+                    }else {return 0}
+                }
+                //code
+                function mainTest(x1, x2, valE) {
+                    if (sumUp(0,x1)*sumUp(0,x2) > 0) {
+                        return "The whole range has no crossing with the x axle(我也不知道这样写对不对";
+                    }else if (sumUp(0,x1)==0) {
+                        return "The exact number is " + x1;
+                    }else if (sumUp(0,x2)==0) {
+                        return "The exact number is " + x2;
+                    }else if (x1 < x2) {//make x1 the bigger one
+                        x1 = x1 + x2;
+                        x2 = x1 - x2;
+                        x1 = x1 - x2;//引用了别人的巧妙思路
+                        alert(sumUp(0,x2));
+                    }
+                    for (var i = 0; i <= 2333; i++) {
+                       if (x1 - x2 <= valE) {
+                           break;
+                        }else if (sumUp(0,(x1+x2)/2)>0) {
+                            x1 = (x1+x2)/2;
+                        }else if (sumUp(0,(x1+x2)/2)==0) {
+                            return "The exact number is " + (x1+x2)/2;
+                        }else {x2 = (x1+x2)/2}
+                    }
+                    return "The range is between " + x2 + " & " + x1 + "\n" + "如果有强迫症用这个: " + (Math.random()*(x1-x2)+x2);
+                }       
+                //start && input
+                function start() {
+                    var val1 = document.getElementById("value1").value;
+                    var val2 = document.getElementById("value2").value;
+                    var valE = document.getElementById("valE").value;
+                    val1 = parseFloat(val1);
+                    val2 = parseFloat(val2);
+                    valE = parseFloat(valE);
+                    //document.write(val1);
+                    let result = mainTest(val1, val2, valE);
+                    document.getElementById("result").innerHTML=result;
+                }
+            </script>
+            <main>
+                <p>如要输入小数请用"x.xx"的格式, 想撤消输入值可以直接把k改为相反数后提交</p>
+                <p>k: <input type ="text" placeholder="Please input k" id="valueK" required>.</p>
+                <p>times: <input type ="text" placeholder="Please input times" id="valueT" required>.</p>
+                <button type="button" onclick="makeArr(arrK,arrT)">Submit K and their respective times</button>
+                <button type="button" onclick="clearArr()">Clear the arrays</button>
+                <p id="displayValK">K: </p>
+                <p id="displayValT">T: </p>
+
+                <p>范围: <input type ="text" placeholder="Please input value1" id="value1" required>
+                <input type ="text" placeholder="Please input value2" id="value2" required>.</p>
+                <p>e: <input type ="text" placeholder="Please input e" id="valE" required>.</p>
+                
+                <button type="button" onclick="start();">Start</button>
+                <h1 id="result">Result here</h1>
+                <p>Made by Tommy</p>
+            </main>
+        </div>
+    </body>
+</html>
