@@ -16,20 +16,21 @@
                     var valT = parseFloat(document.getElementById("valueT").value);
                     document.getElementById("valueK").value="";
                     document.getElementById("valueT").value="";
-                    alert(typeof valK);
                     if (arrT.indexOf(valT) != -1) {//如果有相同次数，K值合并
-                        arrK[arrT.indexOf(valT)]+=valK
+                        arrK[arrT.indexOf(valT)]+=valK;
+                    }else if (isNaN(valK)||isNaN(valT)) {
+                        alert("Please input both of the values")
                     }else {
                         arrT.push(valT);
                         arrK.push(valK);
-                    }
+                    }//要改
                     document.getElementById("displayValK").innerHTML="K: "+arrK;
                     document.getElementById("displayValT").innerHTML="T: "+arrT;
                 }
                 //清空arr
                 function clearArr() {
                     arrK=[];
-                    arrT=[];
+                    arrT=[];//要改
                     document.getElementById("displayValK").innerHTML="K: "+arrK;
                     document.getElementById("displayValT").innerHTML="T: "+arrT;
                 }
