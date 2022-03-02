@@ -1,4 +1,5 @@
-<!--还有很多检测没有加-->
+<!--还有很多检测没有加
+    还有history功能，暂留页面可以保存值-->
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,28 +12,47 @@
                 //create arrays
                 let arrK = [];
                 let arrT = [];
-                function makeArr(arrK,arrT) {
+                let display = [];
+                function makeArr() {
                     var valK = parseFloat(document.getElementById("valueK").value);
                     var valT = parseFloat(document.getElementById("valueT").value);
                     document.getElementById("valueK").value="";
                     document.getElementById("valueT").value="";
-                    if (arrT.indexOf(valT) != -1) {//如果有相同次数，K值合并
-                        arrK[arrT.indexOf(valT)]+=valK;
-                    }else if (isNaN(valK)||isNaN(valT)) {
+                    if (isNaN(valK)||isNaN(valT)) {
                         alert("Please input both of the values")
+                        return "";
+                    }else if (arrT.indexOf(valT) != -1) {//如果有相同次数，K值合并
+                        arrK[arrT.indexOf(valT)]+=valK;
+                        if (valT!=0) {
+                            display[display.indexOf("x"+"**"+valT)-1]+=valK;
+                        }else {
+                            for (let i = 2; i <= display.length; i+=3) {
+                                if (display[i]!="+") {
+                                    display[i-2]+=valK;
+                                }
+                            }
+                        }
                     }else {
                         arrT.push(valT);
                         arrK.push(valK);
+                        if (valT!=0) {
+                            display[display.length]=valK;
+                            display[display.length]="x" + "**" + valT;
+                            display[display.length]="+";
+                        }else {
+                            display[display.length]=valK;
+                            display[display.length]="+";
+                        }
                     }//要改
-                    document.getElementById("displayValK").innerHTML="K: "+arrK;
-                    document.getElementById("displayValT").innerHTML="T: "+arrT;
+                    let displayVal = display.slice(0,display.length-1);
+                    document.getElementById("displayFunc").innerHTML="f(x)="+displayVal.join("");
                 }
                 //清空arr
                 function clearArr() {
                     arrK=[];
                     arrT=[];//要改
-                    document.getElementById("displayValK").innerHTML="K: "+arrK;
-                    document.getElementById("displayValT").innerHTML="T: "+arrT;
+                    display=[];
+                    document.getElementById("displayFunc").innerHTML="f(x)=";
                 }
                 //把arr中的数据载入
                 
@@ -53,7 +73,6 @@
                         x1 = x1 + x2;
                         x2 = x1 - x2;
                         x1 = x1 - x2;//引用了别人的巧妙思路
-                        alert(sumUp(0,x2));
                     }
                     for (var i = 0; i <= 2333; i++) {
                        if (x1 - x2 <= valE) {
@@ -78,22 +97,26 @@
                     let result = mainTest(val1, val2, valE);
                     document.getElementById("result").innerHTML=result;
                 }
+                function clearStart() {
+                    document.getElementById("value1").value="";
+                    document.getElementById("value2").value="";
+                    document.getElementById("valE").value="";
+                }
             </script>
             <main>
                 <p>如要输入小数请用"x.xx"的格式, 想撤消输入值可以直接把k改为相反数后提交</p>
                 <p>k: <input type ="text" placeholder="Please input k" id="valueK" required>.</p>
                 <p>times: <input type ="text" placeholder="Please input times" id="valueT" required>.</p>
-                <button type="button" onclick="makeArr(arrK,arrT)">Submit K and their respective times</button>
-                <button type="button" onclick="clearArr()">Clear the arrays</button>
-                <p id="displayValK">K: </p>
-                <p id="displayValT">T: </p>
+                <button type="button" onclick="makeArr()">Submit K and their respective times</button>
+                <p id="displayFunc">Here's the function</p>
 
                 <p>范围: <input type ="text" placeholder="Please input value1" id="value1" required>
                 <input type ="text" placeholder="Please input value2" id="value2" required>.</p>
                 <p>e: <input type ="text" placeholder="Please input e" id="valE" required>.</p>
+                <button type="button" onclick="start()">Start</button>
                 
-                <button type="button" onclick="start();">Start</button>
-                <h1 id="result">Result here</h1>
+                <button type="button" onclick="clearArr(); clearStart()">Clear</button><br>
+                <strong id="result">Result here</strong>
                 <p>Made by Tommy</p>
             </main>
         </div>
