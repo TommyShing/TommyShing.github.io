@@ -7,11 +7,14 @@
         <style>
              #p1 {background-color: rgb(2,127,223); padding: 10px; border-style: solid; border-color: black; border-width: 2px; border-radius: 13%; color: black;}
              header {
-                background-color: dodgerblue;
-                margin-top: 0px;
-                margin-bottom: 20px;
-                padding-top: 10px;
-                padding-bottom: 10px;
+                 background-color: dodgerblue;
+                 margin-top: -10px;
+                 margin-bottom: 20px;
+                 margin-left: -10px;
+                 padding-top: 20px;
+                 padding-bottom: 20px;
+                 padding-left: 15px;
+                 color: "white";
             }  
         </style>
     </head>
@@ -116,7 +119,9 @@
             <main>
                 <div>
                     <header>
-                        <a href="https://blog.legotrain.ml" class="header">TommyShing.github.io</a>
+                        <a href="https://blog.legotrain.ml" class="header">
+                            <h2 style="color: white">TommyShing.github.io</h2>
+                        </a>
                     </header>
                 </div>
                 <div>
@@ -135,8 +140,9 @@
                     <input type ="text" placeholder="Please input value2" id="value2" required>.</p>
                     <p>e: <input type ="text" placeholder="Please input e" id="valE" required>.</p>
                     <button type="button" onclick="start()">Start</button>
+                    <button type="button" onclick="clearArr(); clearStart()">Clear</button><br>
                 </div>
-                <button type="button" onclick="clearArr(); clearStart()">Clear</button><br>
+                
                 <p id="result">Result here</p><br>
                 
                 <hr>
