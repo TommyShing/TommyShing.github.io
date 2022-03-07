@@ -6,6 +6,13 @@
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
         <style>
              #p1 {background-color: rgb(2,127,223); padding: 10px; border-style: solid; border-color: black; border-width: 2px; border-radius: 13%; color: black;}
+             header {
+                background-color: dodgerblue;
+                margin-top: 0px;
+                margin-bottom: 20px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }  
         </style>
     </head>
     <body>
@@ -107,24 +114,30 @@
                 }
             </script>
             <main>
-                <a href="https://blog.legotrain.ml" id="p1">TommyShing.github.io</a>
-                <h2 style="font-family: sans-serif; text-align: center">二分法求零点</h2>
-                
-                <p>如要输入小数请用"x.xx"的格式, 想撤消输入值可以直接把k改为相反数后提交</p>
-                <p>k: <input type ="text" placeholder="Please input k" id="valueK" required>.</p>
-                <p>times: <input type ="text" placeholder="Please input times" id="valueT" required>.</p>
-                <button type="button" onclick="makeArr()">Submit K and their respective times</button>
-                <p id="displayFunc">Here's the function</p><br>
-                
+                <div>
+                    <header>
+                        <a href="https://blog.legotrain.ml" class="header">TommyShing.github.io</a>
+                    </header>
+                </div>
+                <div>
+                    <h1 style="font-family: sans-serif; text-align: center">二分法求零点</h1>
+                </div>
+                <div>
+                    <p>如要输入小数请用"x.xx"的格式, 想撤消输入值可以直接把k改为相反数后提交</p>
+                    <p>k: <input type ="text" placeholder="Please input k" id="valueK" required>.</p>
+                    <p>times: <input type ="text" placeholder="Please input times" id="valueT" required>.</p>
+                    <button type="button" onclick="makeArr()">Submit K and their respective times</button>
+                    <p id="displayFunc">Here's the function</p><br>
+                </div>
                 <hr>
-
-                <p>范围: <input type ="text" placeholder="Please input value1" id="value1" required>
-                <input type ="text" placeholder="Please input value2" id="value2" required>.</p>
-                <p>e: <input type ="text" placeholder="Please input e" id="valE" required>.</p>
-                <button type="button" onclick="start()">Start</button>
-                
+                <div>
+                    <p>范围: <input type ="text" placeholder="Please input value1" id="value1" required>
+                    <input type ="text" placeholder="Please input value2" id="value2" required>.</p>
+                    <p>e: <input type ="text" placeholder="Please input e" id="valE" required>.</p>
+                    <button type="button" onclick="start()">Start</button>
+                </div>
                 <button type="button" onclick="clearArr(); clearStart()">Clear</button><br>
-                <strong id="result">Result here</strong><br>
+                <p id="result">Result here</p><br>
                 
                 <hr>
             </main>
