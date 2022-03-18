@@ -19,7 +19,8 @@ body header {
 body header .title {
     position: relative;
     font-size: 0.5em;
-    width: 223px;
+    width: 225px;
+    min-width: 223px;
     height: 57.6px;
     margin-left: 22px;
     background-color: transparent;
