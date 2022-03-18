@@ -1,0 +1,188 @@
+<!--还有很多检测没有加
+    还有history功能，暂留页面可以保存值-->
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+            <link rel="stylesheet" type="text/css" href="./css/third.css">
+        </head>
+        <body>
+            <script>
+                //author: Tommy
+                //create arrays
+                let arrK = [];
+                let arrT = [];
+                let display = [];
+                //create jsons
+                let valTo = {0: "⁰", 1: "¹", 2: "²", 3: "³", 4: "⁴", 5: "⁵", 6: "⁶", 7: "⁷", 8: "⁸", 9: "⁹"};
+                let toVal = {"⁰": 0, "¹": 1, "²": 2, "³": 3, "⁴": 4, "⁵": 5, "⁶": 6, "⁷": 7, "⁸": 8, "⁹": 9};//居然没用上
+                //functions
+                function makeArr() {
+                    var valK = parseFloat(document.getElementById("valueK").value);
+                    var valT = parseFloat(document.getElementById("valueT").value);
+                    document.getElementById("valueK").value="";
+                    document.getElementById("valueT").value="";
+                    if (isNaN(valK)||isNaN(valT)) {
+                        alert("Please input both of the values")
+                        return 1;
+                    }else if (arrT.indexOf(valT) != -1) {//如果有相同次数，K值合并
+                        arrK[arrT.indexOf(valT)]+=valK;
+                        if (valT!=0) {//普通类
+                            display[display.indexOf("x"+replT(valT).join(""))-1]+=valK;
+                        }else {//0次项
+                            for (let i = 2; i <= display.length; i+=3) {
+                                if (display[i]!="+") {
+                                    display[i-2]+=valK;
+                                    break;
+                                }
+                            }
+                        }
+                    }else {
+                        arrT.push(valT);
+                        arrK.push(valK);
+                        if (valT!=0) {
+                            display[display.length]=valK;
+                            display[display.length]="x" + replT(valT).join("");//这里导入函数使得显示更核谐
+                            display[display.length]="+";
+                        }else {
+                            display[display.length]=valK;
+                            display[display.length]="+";
+                        }
+                    }
+                    let displayVal = display.slice(0,display.length-1);
+                    document.getElementById("displayFunc").innerHTML="f(x)="+displayVal.join("");
+                }
+                //接上, 把**valT换走即: 把2换成²
+                function replT (valT) {
+                    let i = 0;
+                    while(valT*(10**i) != Math.floor(valT*(10**i))) {
+                        i++;//查找小数点后位数
+                    }
+                    alert(i);
+                    
+                    let temp = valT*(10**i);
+                    let tempArr = [];
+                    for (let j = 1; temp != 0||j<=i; j++) {
+                        let numO = valTo[temp-10*Math.floor(temp/10)];
+                        tempArr.unshift(numO);
+                        temp = Math.floor(temp/10);
+                        if (j == i) {
+                            tempArr.unshift("•");
+                            if (temp == 0) {
+                                tempArr.unshift("⁰");//对于只有小数位的次数
+                            }
+                        }
+                    }
+                    return tempArr;
+                }
+
+                //清空arr
+                function clearArr() {
+                    arrK=[];
+                    arrT=[];//要改
+                    display=[];
+                    document.getElementById("displayFunc").innerHTML="f(x)=";
+                }
+                //把arr中的数据载入
+                
+                function sumUp(ord, x) {//ord就填0,是初始序数
+                    if (ord<arrK.length) {
+                        return arrK[ord]*(x**arrT[ord]) + sumUp(ord+1, x)
+                    }else {return 0}
+                }
+                //code
+                function mainFunc(x1, x2, valE) {
+                    if (sumUp(0,x1)*sumUp(0,x2) > 0) {
+                        return "The whole range has no crossing with the x axle(我也不知道这样写对不对";
+                    }else if (sumUp(0,x1)==0) {
+                        return "The exact number is " + x1;
+                    }else if (sumUp(0,x2)==0) {
+                        return "The exact number is " + x2;
+                    }else if (x1 < x2) {//make x1 the bigger one
+                        x1 = x1 + x2;
+                        x2 = x1 - x2;
+                        x1 = x1 - x2;//引用了别人的巧妙思路
+                    }
+                    for (var i = 0; i <= 2333; i++) {
+                        if (x1 - x2 <= valE) {
+                            break;
+                        }else if (sumUp(0,(x1+x2)/2)>0) {
+                            x1 = (x1+x2)/2;
+                        }else if (sumUp(0,(x1+x2)/2)==0) {
+                            return "The exact number is " + (x1+x2)/2;
+                        }else {x2 = (x1+x2)/2}
+                    }
+                    return "The range is between " + x2 + " & " + x1 + "\n" + "如果有强迫症用这个: " + (Math.random()*(x1-x2)+x2);
+                }       
+                //start && input
+                function start() {
+                    var val1 = document.getElementById("value1").value;
+                    var val2 = document.getElementById("value2").value;
+                    var valE = document.getElementById("valE").value;
+                    val1 = parseFloat(val1);
+                    val2 = parseFloat(val2);
+                    valE = parseFloat(valE);
+                    if (isNaN(val1)||isNaN(val2)||isNaN(valE)) {
+                        alert("Please input the values")
+                        return 1;
+                        //document.write(val1);
+                    }else {
+                        let result = mainFunc(val1, val2, valE);
+                        document.getElementById("result").innerHTML=result;
+                    }
+                }
+                function clearStart() {
+                    document.getElementById("value1").value="";
+                    document.getElementById("value2").value="";
+                    document.getElementById("valE").value="";
+                }
+            </script>
+            
+            
+            <header>
+                <div class="title">
+                    <span><a href="https://blog.legotrain.ml">Tommy's Blog</a></span>
+                </div>
+                <div class="flex-container">
+                    <div class="box"><a href="https://blog.legotrain.ml/tools"><!--<i class="iconfont icon-ios-arrow-dropdown"></i>-->
+                        Tools</a><span></span>
+                    </div>
+                    
+                    <div class="box"><a href="#">Projects</a><span></span></div>
+                    <div class="box"><a href="#">Legos</a><span></span></div>
+                    
+                    <div class="box"><a href="#">Notes</a><span></span></div>
+                </div>
+            </header>
+                    
+            <main>
+                <h1 style="font-family: sans-serif; text-align: center">二分法求零点</h1>
+                
+                <div class="context">
+                    <p>如要输入小数请用"x.xx"的格式, 想撤消输入值可以直接把k改为相反数后提交</p>
+                    <p>k: <input type ="text" placeholder="Please input k" id="valueK" required></p>
+                    <p>times: <input type ="text" placeholder="Please input times" id="valueT" required></p>
+                    <button type="button" onclick="makeArr()">Submit K and their respective times</button>
+                    <p id="displayFunc">Here's the function</p><br>
+                
+                    <hr>
+                
+                    <p>范围: <input type ="text" placeholder="Please input value1" id="value1" required>
+                    <input type ="text" placeholder="Please input value2" id="value2" required></p>
+                    <p>e: <input type ="text" placeholder="Please input e" id="valE" required></p>
+                    <button type="button" onclick="start()">Start</button>
+                    <button type="button" onclick="clearArr(); clearStart()">Clear</button><br>
+                    <p id="result">Result here</p><br>
+                </div>
+                
+                
+                
+                
+            </main>
+            
+            <footer>
+                <br><hr>
+                <p style="text-align: center; font-family: 'Courier New', Courier, monospace; color:lavender;">Made by Tommy 2022</p>
+            </footer>
+        </body>
+    </html>
