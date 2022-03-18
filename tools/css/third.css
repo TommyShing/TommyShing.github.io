@@ -1,0 +1,87 @@
+body {
+    background-image:url('./img/P1010411.JPG');
+    background-repeat:no-repeat;
+    background-size: 100% auto;
+}
+
+body header {
+    display: flex;
+    font-size: 72px;
+    position: fixed;
+    width: 100%;
+    height: 72px;/*这里要修改成min-height*/
+    background-image: linear-gradient(to bottom,rgb(109, 115, 176),rgba(6,99,255,0.3));
+    top: 0;
+    left: 0;
+    align-items: center;
+}
+/*标题部分*/
+body header .title {
+    position: relative;
+    font-size: 0.5em;
+    width: 223px;
+    height: 57.6px;
+    margin-left: 22px;
+    background-color: transparent;
+    text-align: center;
+}
+
+body header .title span a {
+    display:block;
+    margin-top: 4px;
+    font-family: Helvetica, sans-serif, Arial;
+    color: white;
+    font-weight: 500;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+body header .flex-container {
+    position: relative;
+    top: 0px;
+    display:flex;
+    flex-direction: row;
+    align-items:flex-start;
+    position:relative;
+    left: 22px;
+    height: 45px;
+    font-size: 32px;
+    flex: 0 1 auto;
+}
+
+body header .flex-container .box {
+    font-family: sans-serif, Arial, Helvetica;
+    margin-left: 1.8em;
+    margin-top: 2px;
+    width: 3.8em;
+    height: 100%;
+    font-size: 1em;
+    background-color: transparent;
+    text-align: center;
+    line-height: 0.8em;
+    position: relative;
+}
+body header .flex-container .box a {
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    color:white;
+}
+
+body header .flex-container .box:hover a {
+    color:lavenderblush;/*implicit*/
+}
+
+body main {
+    border: 2px solid #6A7A61;
+    border-radius: 20px;
+    background-image: linear-gradient(to right bottom,rgba(256,256,256,0.4),rgba(230,230,250,0.45),rgba(230,230,250,0.6),rgba(87, 107, 97, 0.8),#6A7A61);
+    width: 80%;
+    height:auto;
+    margin:auto;
+    margin-top: 122px;
+}
+
+body main .context {
+    margin: 2px 22px 13px;
+}
