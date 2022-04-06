@@ -4,7 +4,7 @@
     <html>
         <head>
             <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-            <meta name="viewpoint" content="width=device-width,initial-scale=1">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
             <link rel="stylesheet" type="text/css" href="./css/third.css">
         </head>
         <body>
@@ -15,13 +15,6 @@
                 let valTo = {0: "⁰", 1: "¹", 2: "²", 3: "³", 4: "⁴", 5: "⁵", 6: "⁶", 7: "⁷", 8: "⁸", 9: "⁹"};
                 let toVal = {"⁰": 0, "¹": 1, "²": 2, "³": 3, "⁴": 4, "⁵": 5, "⁶": 6, "⁷": 7, "⁸": 8, "⁹": 9};//居然没用上
                 let display = [];//三位一项
-                
-                window.onload=function()
-                {
-                    alert(window.innerWidth);
-                    alert(document.documentElement.clientWidth);
-                }
-                
                 //make funcArr && display
                 function makeArr () {
                     var valK = parseFloat(document.getElementById("valueK").value);
