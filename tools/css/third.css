@@ -84,6 +84,7 @@ body header div .title {
 }
 
 body header div .title a {
+    min-width:225px;
     display:block;
     font-family: Helvetica, sans-serif, Arial;
     color: white;
