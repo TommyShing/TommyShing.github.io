@@ -77,9 +77,8 @@ body header .flex-title {
 body header div .title {
     position: relative;
     font-size: 0.5em;
-    --title-width: 225px;
+    --title-width: 228px;
     width: var(--title-width);
-    min-width: 223px;
     margin-left: 22px;
     text-align: center;
 }
