@@ -172,7 +172,7 @@ body header div .flex-nav .box:hover a {
     
     body header div .flex-nav {
         position: fixed;
-        top: 8px;
+        top: 13px;
         flex-direction: column;
         height: auto;
         transform:scaleY(0);
@@ -201,4 +201,3 @@ body main {
 body main .context {
     margin: 2px 22px 13px;
 }
-
