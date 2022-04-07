@@ -63,14 +63,14 @@ body header .flex-title {
     background-color: white;
     margin: auto;
     position: relative;
-    margin-top: 14px;
+    margin-top: 17px;
     transition: transform .2s ease-in-out, top .2s ease-in-out .2s;
     top: 0;
 }
 
 .animation-box span:nth-child(2) {
     position: relative;
-    top: -5px;
+    top: -8px;
 }
 
 
@@ -133,7 +133,7 @@ body header div .flex-nav .box:hover a {
 
 @media screen and (max-width: 730px) {
     body header {
-        height: 40px;
+        height: 45px;
     }
     
     body header .hamburger-icon {
@@ -142,21 +142,21 @@ body header div .flex-nav .box:hover a {
     
     body header .flex-title {
         font-size: 2.2em;
-        height: 40px;
+        height: 42px;
     }
     
     /*hamburger-icon*/
     #toggler:checked + label .animation-box span:nth-child(1) {
         background-color: blue;
         transform: rotate(45deg);
-        top: 6px;
+        top: 5px;
         transition: top .2s ease-in-out, transform .2s ease-in-out .2s;
     }
     
     #toggler:checked + label .animation-box span:nth-child(2) {
         background-color: blue;
         transform: rotate(-45deg);
-        top: -9px;
+        top: -13px;
         transition: top .2s ease-in-out, transform .2s ease-in-out .2s;
     }
     
@@ -201,4 +201,3 @@ body main {
 body main .context {
     margin: 2px 22px 13px;
 }
-
