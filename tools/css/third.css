@@ -63,13 +63,14 @@ body header .flex-title {
     background-color: white;
     margin: auto;
     position: relative;
-    margin-top: 12px;
+    margin-top: 14px;
     transition: transform .2s ease-in-out, top .2s ease-in-out .2s;
     top: 0;
 }
 
 .animation-box span:nth-child(2) {
-    top: -2px;
+    position: relative;
+    top: -5px;
 }
 
 
@@ -132,7 +133,7 @@ body header div .flex-nav .box:hover a {
 
 @media screen and (max-width: 730px) {
     body header {
-        height: 36px;
+        height: 40px;
     }
     
     body header .hamburger-icon {
@@ -141,7 +142,7 @@ body header div .flex-nav .box:hover a {
     
     body header .flex-title {
         font-size: 2.2em;
-        height: 35px;
+        height: 40px;
     }
     
     /*hamburger-icon*/
@@ -200,4 +201,3 @@ body main {
 body main .context {
     margin: 2px 22px 13px;
 }
-
