@@ -156,7 +156,7 @@ body header div .flex-nav .box:hover a {
     #toggler:checked + label .animation-box span:nth-child(2) {
         background-color: blue;
         transform: rotate(-45deg);
-        top: -7px;
+        top: -9px;
         transition: top .2s ease-in-out, transform .2s ease-in-out .2s;
     }
     
@@ -172,7 +172,7 @@ body header div .flex-nav .box:hover a {
     
     body header div .flex-nav {
         position: fixed;
-        top: 4px;
+        top: 8px;
         flex-direction: column;
         height: auto;
         transform:scaleY(0);
@@ -201,4 +201,3 @@ body main {
 body main .context {
     margin: 2px 22px 13px;
 }
-
